@@ -7,8 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
+import com.generation.todoapplication.databinding.FragmentFormBinding
+import com.generation.todoapplication.databinding.FragmentListBinding
 
 class FormFragment : Fragment() {
+
+    private lateinit var binding: FragmentFormBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -16,14 +20,12 @@ class FormFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        val view = inflater.inflate(R.layout.fragment_form, container, false)
+        binding = FragmentFormBinding.inflate(layoutInflater, container, false)
 
-        val buttonSave = view.findViewById<Button>(R.id.buttonSave)
-
-        buttonSave.setOnClickListener {
+        binding.buttonSave.setOnClickListener {
             findNavController().navigate(R.id.action_formFragment_to_listFragment)
         }
 
-        return view
+        return binding.root
     }
 }
