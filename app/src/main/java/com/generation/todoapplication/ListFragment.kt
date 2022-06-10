@@ -14,9 +14,6 @@ import com.generation.todoapplication.databinding.FragmentListBinding
 import com.generation.todoapplication.model.Tarefa
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-private val ViewBinding.recyclerTarefa: Any
-    get() {}
-
 class ListFragment : Fragment() {
 
     private lateinit var binding: FragmentListBinding
@@ -25,47 +22,18 @@ class ListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
 
+        // Inflate the layout for this fragment
         binding = FragmentListBinding.inflate(layoutInflater, container, false)
 
-       val listTarefas = listOf(
-            Tarefa("Varrer a casa.",
-                "Varrer a casa em 15min.",
-                "Bruna.",
-                "9 de Junho.",
-                false,
-                "Dia-a-dia."
 
-        ),
-
-            Tarefa("Lavar a louça.",
-                "Lavar a louça em 30min.",
-                "Bruna.",
-                "9 de Junho.",
-                false,
-                "Dia-a-dia."
-
-        ),
-
-            Tarefa("Arrumar a cama.",
-                "Arrumar a cama em 5min.",
-                "Bruna.",
-                "9 de Junho.",
-                true,
-                "Dia-a-dia."
-
-        )
-        )
-
-        val adapter = TarefaAdapter()
+        //Configuração do RecyclerView
+        val TarefaAdapter = TarefaAdapter()
         binding.recyclerTarefa.layoutManager = LinearLayoutManager(context)
-        binding.recyclerTarefa.adapter = adapter
-        binding.recyclerTarefa.setHasFixedSized(true)
+        binding.recyclerTarefa.adapter = TarefaAdapter
+        binding.recyclerTarefa.setHasFixedSize(true)
 
-        adapter.setList(listTarefas)
-
-        binding.floatingAdd.SetOnClickListener {
+        binding.floatingAdd.setOnClickListener {
             findNavController().navigate(R.id.action_listFragment_to_formFragment)
 
         }
